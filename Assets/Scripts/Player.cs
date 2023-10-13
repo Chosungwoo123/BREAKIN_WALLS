@@ -9,13 +9,28 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Vector2 boundary;
 
+    private bool isMoveStop = false;
+    
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     private void Update()
     {
         MoveUpdate();
+        AttackUpdate();
     }
 
     private void MoveUpdate()
     {
+        if (isMoveStop)
+        {
+            return;
+        }
+        
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         var curPos = transform.position;
@@ -32,5 +47,23 @@ public class Player : MonoBehaviour
         Gizmos.color = Color.red;
         
         Gizmos.DrawWireCube(Vector3.zero, boundary);
+    }
+
+    private void AttackUpdate()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            anim.SetTrigger("Attack");
+        }
+    }
+    
+    private void MoveStop()
+    {
+        isMoveStop = true;
+    }
+    
+    private void MovePlay()
+    {
+        isMoveStop = false;
     }
 }
