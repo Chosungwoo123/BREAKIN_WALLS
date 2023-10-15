@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector2 boundary;
 
     private bool isMoveStop = false;
+    private bool isAttacking = false;
+    private bool isDashing = false;
     
     private Animator anim;
 
@@ -51,12 +53,14 @@ public class Player : MonoBehaviour
 
     private void AttackUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isDashing)
         {
             anim.SetTrigger("Attack");
         }
     }
-    
+
+    #region 애니메이션 이벤트 함수
+
     private void MoveStop()
     {
         isMoveStop = true;
@@ -65,5 +69,35 @@ public class Player : MonoBehaviour
     private void MovePlay()
     {
         isMoveStop = false;
+    }
+    
+    private void IsAttackingTrue()
+    {
+        isAttacking = true;
+    }
+    
+    private void IsAttackingFalse()
+    {
+        isAttacking = false;
+    }
+    
+    private void IsDashingTrue()
+    {
+        isDashing = true;
+    }
+    
+    private void IsDashingFalse()
+    {
+        isDashing = false;
+    }
+    
+    #endregion
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.CompareTag("Breaking Wall") && isAttacking)
+        {
+            col.GetComponent<BreakingWall>().Breaking();
+        }
     }
 }
