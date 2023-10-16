@@ -115,5 +115,23 @@ public class Player : MonoBehaviour
         {
             col.GetComponent<BreakingWall>().Breaking();
         }
+
+        if (col.CompareTag("Breaking Wall") && !isAttacking)
+        {
+            GameManager.Instance.CameraShake(0.1f, 3);
+            
+            //hp 다운
+
+            Debug.Log("아야!");
+        }
+
+        if (col.CompareTag("Wall"))
+        {
+            GameManager.Instance.CameraShake(0.1f, 3);
+            
+            //hp 다운
+            
+            Debug.Log("아야!");
+        }
     }
 }

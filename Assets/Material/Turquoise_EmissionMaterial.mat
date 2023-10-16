@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: White_EmissionMaterial 1
+  m_Name: Turquoise_EmissionMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 2a9b1fe0f3a47ee489d889f6b8f1a0e1, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -41,7 +41,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _EmissionColor: {r: 2.9960785, g: 2.9960785, b: 2.9960785, a: 1}
+    - _EmissionColor: {r: 0, g: 6.294649, b: 6.4980206, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8423038734749613513
 MonoBehaviour:

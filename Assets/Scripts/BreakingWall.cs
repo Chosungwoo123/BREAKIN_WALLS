@@ -11,6 +11,8 @@ public class BreakingWall : MonoBehaviour
     {
         GameManager.Instance.CameraShake(0.2f, 4);
         
+        GameManager.Instance.GetScore(70);
+        
         Instantiate(breakingEffectPrefab, transform.position, Quaternion.identity);
         
         Destroy(gameObject);
