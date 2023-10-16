@@ -6,9 +6,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float speed = 3.0f;
+    [SerializeField] private float runningAmount = 1.5f;
 
     [SerializeField] private Vector2 boundary;
 
+    private float runningMultiply = 1f;
+    
     private bool isMoveStop = false;
     private bool isAttacking = false;
     private bool isDashing = false;
@@ -23,6 +26,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         MoveUpdate();
+        RunningUpdate();
         AttackUpdate();
     }
 
@@ -37,11 +41,23 @@ public class Player : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
         var curPos = transform.position;
 
-        curPos += new Vector3(h, v, 0) * speed * Time.deltaTime;
+        curPos += new Vector3(h, v, 0) * speed * Time.deltaTime * runningMultiply;
         curPos.x = Mathf.Clamp(curPos.x, -boundary.x / 2, boundary.x / 2);
         curPos.y = Mathf.Clamp(curPos.y, -boundary.y / 2, boundary.y / 2);
 
         transform.position = curPos;
+    }
+
+    private void RunningUpdate()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            runningMultiply = runningAmount;
+        }
+        else
+        {
+            runningMultiply = 1f;
+        }
     }
 
     private void OnDrawGizmos()

@@ -11,7 +11,7 @@ public class CameraShake : MonoBehaviour
     
     private IEnumerator Shake(float duration, float magnitube)
     {
-        Vector3 originalPos = transform.position;
+        Vector3 originalPos = new Vector3(0, 0, -10);
 
         float elapsedTime = 0f;
 

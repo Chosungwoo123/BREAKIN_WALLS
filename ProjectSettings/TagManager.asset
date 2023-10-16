@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Breaking Wall
   - Ground
+  - Map
+  - EndLine
   layers:
   - Default
   - TransparentFX

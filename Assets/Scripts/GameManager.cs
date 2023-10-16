@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private CameraShake cameraShake;
 
+    public float mapMoveSpeed;
+
     private void Awake()
     {
         if (instance == null)
