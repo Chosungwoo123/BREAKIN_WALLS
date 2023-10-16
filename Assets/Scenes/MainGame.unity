@@ -1196,6 +1196,7 @@ MonoBehaviour:
   cameraShake: {fileID: 519420033}
   scoreText: {fileID: 2123080337}
   mapMoveSpeed: 5
+  scoreMultiply: 20
 --- !u!4 &920262100
 Transform:
   m_ObjectHideFlags: 0

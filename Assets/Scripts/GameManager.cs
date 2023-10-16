@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
 
     public float mapMoveSpeed;
+    public float scoreMultiply;
 
     private float curScore;
 
@@ -46,6 +47,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        scoreText.text = Mathf.FloorToInt(curScore).ToString();
+    }
+
+    private void Update()
+    {
+        curScore += Time.deltaTime * scoreMultiply;
+        
         scoreText.text = Mathf.FloorToInt(curScore).ToString();
     }
 
