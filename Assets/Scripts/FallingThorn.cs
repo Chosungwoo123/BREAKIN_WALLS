@@ -28,7 +28,6 @@ public class FallingThorn : MonoBehaviour
 
         if (ray.transform != null)
         {
-            Debug.Log("충돌됨!!"); 
             thornObj.Falling(fallingSpeed);
             isCollision = true;
         }
