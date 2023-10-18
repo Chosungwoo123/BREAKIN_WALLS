@@ -62,7 +62,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.9688826, y: -0.54768705}
+  m_Offset: {x: 5.230111, y: -0.54768705}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -73,7 +73,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16.728178, y: 9.807883}
+  m_Size: {x: 19.250635, y: 9.807883}
   m_EdgeRadius: 0
 --- !u!50 &8020928420325582208
 Rigidbody2D:
@@ -161,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5364296418570037102, guid: d1ccf047420c93642b32f717ca9a62ea, type: 3}
       propertyPath: m_InstanceId
-      value: -60790
+      value: -182990
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1ccf047420c93642b32f717ca9a62ea, type: 3}
@@ -187,7 +187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5364296418570037101, guid: d1ccf047420c93642b32f717ca9a62ea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.08
+      value: 4.92
       objectReference: {fileID: 0}
     - target: {fileID: 5364296418570037101, guid: d1ccf047420c93642b32f717ca9a62ea, type: 3}
       propertyPath: m_LocalPosition.y
@@ -231,7 +231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5364296418570037102, guid: d1ccf047420c93642b32f717ca9a62ea, type: 3}
       propertyPath: m_InstanceId
-      value: -60776
+      value: -183002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1ccf047420c93642b32f717ca9a62ea, type: 3}
@@ -257,7 +257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5364296418570037101, guid: d1ccf047420c93642b32f717ca9a62ea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.32
+      value: 10.16
       objectReference: {fileID: 0}
     - target: {fileID: 5364296418570037101, guid: d1ccf047420c93642b32f717ca9a62ea, type: 3}
       propertyPath: m_LocalPosition.y
@@ -301,7 +301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5364296418570037102, guid: d1ccf047420c93642b32f717ca9a62ea, type: 3}
       propertyPath: m_InstanceId
-      value: -60804
+      value: -183014
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1ccf047420c93642b32f717ca9a62ea, type: 3}
