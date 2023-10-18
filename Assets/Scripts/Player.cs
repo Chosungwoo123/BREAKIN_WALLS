@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float runningAmount = 1.5f;
 
     [SerializeField] private Vector2 boundary;
+    [SerializeField] private GameObject hitEffectPrefab;
 
     private float runningMultiply = 1f;
     
@@ -109,6 +110,17 @@ public class Player : MonoBehaviour
     
     #endregion
 
+    private void OnDamage()
+    {
+        GameManager.Instance.CameraShake(0.2f, 5);
+        
+        //hp 다운
+
+        Debug.Log("아야!");
+
+        Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if(col.CompareTag("Breaking Wall") && isAttacking)
@@ -118,20 +130,12 @@ public class Player : MonoBehaviour
 
         if (col.CompareTag("Breaking Wall") && !isAttacking)
         {
-            GameManager.Instance.CameraShake(0.1f, 3);
-            
-            //hp 다운
-
-            Debug.Log("아야!");
+            OnDamage();
         }
 
         if (col.CompareTag("Wall"))
         {
-            GameManager.Instance.CameraShake(0.1f, 3);
-            
-            //hp 다운
-            
-            Debug.Log("아야!");
+            OnDamage();
         }
     }
 }
