@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e343891e3914640458d6ab0df57f3574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallingSpeed: 15
+  fallingSpeed: 20
   scanRange: 12
   whatIsPlayer:
     serializedVersion: 2
