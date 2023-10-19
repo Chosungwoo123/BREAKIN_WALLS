@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
     
     #endregion
 
-    private void OnDamage()
+    public void OnDamage()
     {
         GameManager.Instance.CameraShake(0.2f, 5);
         

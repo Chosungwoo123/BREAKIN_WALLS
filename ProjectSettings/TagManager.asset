@@ -9,6 +9,7 @@ TagManager:
   - Map
   - EndLine
   - Wall
+  - Thorn
   layers:
   - Default
   - TransparentFX

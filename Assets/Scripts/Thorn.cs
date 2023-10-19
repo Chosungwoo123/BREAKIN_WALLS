@@ -40,4 +40,14 @@ public class Thorn : MonoBehaviour
             Destroy(transform.parent.gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<Player>().OnDamage();
+            
+            Destroy(transform.parent.gameObject);
+        }
+    }
 }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1348926553318581001}
   m_Layer: 0
   m_Name: Thorn
-  m_TagString: Untagged
+  m_TagString: Thorn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,9 +113,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.49998355, y: 0.28866887}
-      - {x: -0.499996, y: 0.2886637}
-      - {x: -0.0000003077148, y: -0.5785213}
+    - - {x: 0.40200782, y: 0.24621272}
+      - {x: -0.4020203, y: 0.2494734}
+      - {x: -0.0000003077148, y: -0.46095043}
 --- !u!50 &1348926553318581003
 Rigidbody2D:
   serializedVersion: 4
@@ -174,7 +174,7 @@ MonoBehaviour:
   - {x: 0.5, y: 0.2886666, z: 0}
   m_ShapePathHash: -1466489037
   m_Mesh: {fileID: 0}
-  m_InstanceId: 38270
+  m_InstanceId: 37124
   m_LocalBounds:
     m_Center: {x: -0.00000023841858, y: -0.14492708, z: 0}
     m_Extent: {x: 0.50000024, y: 0.4335937, z: 0}
