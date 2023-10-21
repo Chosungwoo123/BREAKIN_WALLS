@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public float scoreMultiply;
 
     private float curScore;
+    private float curTime = 0f;
 
     private void Awake()
     {
@@ -52,9 +53,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        curScore += Time.deltaTime * scoreMultiply;
+        curTime += Time.deltaTime;
         
-        scoreText.text = Mathf.FloorToInt(curScore).ToString();
+        // 30초 마다 게임 스피드 업
+        if (Mathf.FloorToInt(curTime) >= 30)
+        {
+            SpeedUp();
+
+            curTime = 0f;
+        }
+
+        ScoreUpdate();
     }
 
     public void CameraShake(float duration, float magnitube)
@@ -83,5 +92,19 @@ public class GameManager : MonoBehaviour
 
         current = target;
         scoreText.text = Mathf.FloorToInt(current).ToString();
+    }
+
+    private void ScoreUpdate()
+    {
+        curScore += Time.deltaTime * scoreMultiply;
+        
+        scoreText.text = Mathf.FloorToInt(curScore).ToString();
+    }
+    
+    private void SpeedUp()
+    {
+        mapMoveSpeed += 0.5f;
+        
+        Debug.Log(mapMoveSpeed);
     }
 }
