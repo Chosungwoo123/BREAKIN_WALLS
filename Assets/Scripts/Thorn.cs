@@ -46,8 +46,6 @@ public class Thorn : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<Player>().OnDamage();
-            
-            Destroy(transform.parent.gameObject);
         }
     }
 }

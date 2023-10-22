@@ -16,12 +16,15 @@ public class Player : MonoBehaviour
     private bool isMoveStop = false;
     private bool isAttacking = false;
     private bool isDashing = false;
+    private bool isInvincibility = false;
     
     private Animator anim;
+    private WaitForSeconds invincibilityTime;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        invincibilityTime = new WaitForSeconds(3f);
     }
 
     private void Update()
@@ -112,6 +115,11 @@ public class Player : MonoBehaviour
 
     public void OnDamage()
     {
+        if (isInvincibility)
+        {
+            return;
+        }
+        
         GameManager.Instance.CameraShake(0.2f, 5);
         
         //hp 다운
@@ -119,6 +127,8 @@ public class Player : MonoBehaviour
         Debug.Log("아야!");
 
         Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+
+        StartCoroutine(InvincibilityRoutine());
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -137,5 +147,14 @@ public class Player : MonoBehaviour
         {
             OnDamage();
         }
+    }
+    
+    private IEnumerator InvincibilityRoutine()
+    {
+        isInvincibility = true;
+
+        yield return invincibilityTime;
+
+        isInvincibility = false;
     }
 }
