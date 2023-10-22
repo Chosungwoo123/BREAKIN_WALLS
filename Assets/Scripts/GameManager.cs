@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,8 +27,14 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [SerializeField] private CameraShake cameraShake;
+    
+    [Space(10)]
+    [Header("UI 관련 변수")]
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private RectTransform speedUpTextRect;
 
+    [Space(10)]
+    [Header("게임 관련 변수")]
     public float mapMoveSpeed;
     public float scoreMultiply;
 
@@ -56,7 +63,7 @@ public class GameManager : MonoBehaviour
         curTime += Time.deltaTime;
         
         // 30초 마다 게임 스피드 업
-        if (Mathf.FloorToInt(curTime) >= 30)
+        if (Mathf.FloorToInt(curTime) >= 25)
         {
             SpeedUp();
 
@@ -104,6 +111,11 @@ public class GameManager : MonoBehaviour
     private void SpeedUp()
     {
         mapMoveSpeed += 0.5f;
+
+        speedUpTextRect.anchoredPosition = new Vector2(0, -800);
+
+        speedUpTextRect.DOAnchorPosY(320, 0.3f).SetEase(Ease.OutBack);
+        speedUpTextRect.DOAnchorPosY(800, 0.3f).SetDelay(0.7f).SetEase(Ease.InBack);
         
         Debug.Log(mapMoveSpeed);
     }
