@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Vector2 boundary;
     [SerializeField] private GameObject hitEffectPrefab;
+    [SerializeField] private ParticleSystem magnetEffect;
 
     private float runningMultiply = 1f;
     
