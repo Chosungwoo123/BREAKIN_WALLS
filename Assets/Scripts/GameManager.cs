@@ -27,16 +27,24 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [SerializeField] private CameraShake cameraShake;
-    
+
+    #region UI 관련 변수
+
     [Space(10)]
     [Header("UI 관련 변수")]
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private RectTransform speedUpTextRect;
+    
+    #endregion
+
+    #region 게임 관련 변수
 
     [Space(10)]
     [Header("게임 관련 변수")]
     public float mapMoveSpeed;
     public float scoreMultiply;
+    
+    #endregion
 
     private float curScore;
     private float curTime = 0f;
