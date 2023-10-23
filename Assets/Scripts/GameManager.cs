@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     [Header("UI 관련 변수")]
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private RectTransform speedUpTextRect;
+    [SerializeField] private RectTransform magnetUpTextRect;
     
     #endregion
 
@@ -43,9 +44,10 @@ public class GameManager : MonoBehaviour
     [Header("게임 관련 변수")]
     public float mapMoveSpeed;
     public float scoreMultiply;
+    public GameObject curPlayer;
     
     #endregion
-
+    
     private float curScore;
     private float curTime = 0f;
 
@@ -126,5 +128,13 @@ public class GameManager : MonoBehaviour
         speedUpTextRect.DOAnchorPosY(800, 0.2f).SetDelay(0.7f).SetEase(Ease.InBack);
         
         Debug.Log(mapMoveSpeed);
+    }
+
+    public void MagnetUpTextAnimation()
+    {
+        magnetUpTextRect.anchoredPosition = new Vector2(1400, 200);
+        
+        magnetUpTextRect.DOAnchorPosX(0, 0.3f).SetEase(Ease.OutBack);
+        magnetUpTextRect.DOAnchorPosX(-1400, 0.2f).SetDelay(0.7f).SetEase(Ease.InBack);
     }
 }

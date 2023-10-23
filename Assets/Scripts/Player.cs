@@ -148,6 +148,12 @@ public class Player : MonoBehaviour
         {
             OnDamage();
         }
+    
+        if (col.CompareTag("Magnet"))
+        {
+            magnetEffect.Play();
+            GameManager.Instance.MagnetUpTextAnimation();
+        }
     }
     
     private IEnumerator InvincibilityRoutine()
