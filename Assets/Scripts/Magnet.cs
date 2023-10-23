@@ -15,6 +15,7 @@ public class Magnet : MonoBehaviour
 
     private void ScanUpdate()
     {
+        // 범위 안에 있는 크리스탈들의 자성을 활성화
         Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, scanRange, scanLayer);
 
         foreach (var target in targets)

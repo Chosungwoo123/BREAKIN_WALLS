@@ -12,6 +12,7 @@ public class Crystal : MonoBehaviour
 
     private void Update()
     {
+        // 만약 자석이 활성화 되면 플레이어 쪽으로 이동
         if (isMagnet)
         {
             Vector3 dir = GameManager.Instance.curPlayer.transform.position - transform.position;

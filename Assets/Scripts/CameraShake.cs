@@ -15,6 +15,7 @@ public class CameraShake : MonoBehaviour
 
         float elapsedTime = 0f;
 
+        // 정해진 시간까지 쉐이크
         while (elapsedTime < duration)
         {
             float xOffset = Random.Range(-0.5f, 0.5f) * magnitube;
