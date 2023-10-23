@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector2 boundary;
     [SerializeField] private GameObject hitEffectPrefab;
     [SerializeField] private ParticleSystem magnetEffect;
+    [SerializeField] private Magnet magnet;
 
     private float runningMultiply = 1f;
     
@@ -152,6 +153,7 @@ public class Player : MonoBehaviour
         if (col.CompareTag("Magnet"))
         {
             magnetEffect.Play();
+            magnet.scanRange += 0.25f;
             GameManager.Instance.MagnetUpTextAnimation();
         }
     }

@@ -6,6 +6,22 @@ using UnityEngine;
 public class Magnet : MonoBehaviour
 {
     public float scanRange;
+    public LayerMask scanLayer;
+
+    private void Update()
+    {
+        ScanUpdate();
+    }
+
+    private void ScanUpdate()
+    {
+        Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, scanRange, scanLayer);
+
+        foreach (var target in targets)
+        {
+            target.GetComponent<Crystal>().isMagnet = true;
+        }
+    }
 
     private void OnDrawGizmos()
     {

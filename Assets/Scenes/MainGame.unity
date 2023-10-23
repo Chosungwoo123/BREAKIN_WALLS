@@ -2390,6 +2390,7 @@ MonoBehaviour:
   boundary: {x: 15, y: 9}
   hitEffectPrefab: {fileID: 5935162592132040268, guid: ff826b6c7052e564b97e0cc406c71d42, type: 3}
   magnetEffect: {fileID: 7888300851212842296}
+  magnet: {fileID: 1754332170}
 --- !u!4 &1457687805
 Transform:
   m_ObjectHideFlags: 0
@@ -3096,7 +3097,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d6d10b9b6b3714299a187d1db0a247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanRange: 5.35
+  scanRange: 3
+  scanLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &1761700164
 GameObject:
   m_ObjectHideFlags: 0
