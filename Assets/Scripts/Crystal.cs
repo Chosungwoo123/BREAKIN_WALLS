@@ -17,7 +17,7 @@ public class Crystal : MonoBehaviour
         {
             Vector3 dir = GameManager.Instance.curPlayer.transform.position - transform.position;
 
-            transform.position += dir.normalized * 35 * Time.deltaTime;
+            transform.position += dir.normalized * 27 * Time.deltaTime;
         }
     }
 
