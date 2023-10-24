@@ -154,6 +154,7 @@ public class Player : MonoBehaviour
         {
             magnetEffect.Play();
             magnet.scanRange += 0.25f;
+            Destroy(col.gameObject);
             GameManager.Instance.MagnetUpTextAnimation();
         }
     }
