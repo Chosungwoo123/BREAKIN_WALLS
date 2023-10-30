@@ -19,7 +19,7 @@ public class Map : MonoBehaviour
         transform.position += movePos;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         // 엔드라인에 도달하면 삭제
         if (other.CompareTag("EndLine"))
