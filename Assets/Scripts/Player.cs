@@ -5,13 +5,27 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    #region 기본 스탯
+    
+    [Space(10)]
+    [Header("기본 스탯")]
+    [SerializeField] private int health = 3;
+    
     [SerializeField] private float speed = 3.0f;
     [SerializeField] private float runningAmount = 1.5f;
+    
+    #endregion
 
+    #region 게임 오브젝트 관련
+
+    [Space(10)]
+    [Header("게임 오브젝트 관련")]
     [SerializeField] private Vector2 boundary;
     [SerializeField] private GameObject hitEffectPrefab;
     [SerializeField] private ParticleSystem magnetEffect;
     [SerializeField] private Magnet magnet;
+    
+    #endregion
 
     private float runningMultiply = 1f;
     
@@ -125,8 +139,9 @@ public class Player : MonoBehaviour
         GameManager.Instance.CameraShake(0.2f, 5);
         
         //hp 다운
+        health--;
 
-        Debug.Log("아야!");
+        Debug.Log("남은 체력 : " + health);
 
         Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
 
