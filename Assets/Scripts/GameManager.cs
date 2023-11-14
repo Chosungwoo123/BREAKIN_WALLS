@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
     {
         curTime += Time.deltaTime;
         
-        // 30초 마다 게임 스피드 업
+        //25초 마다 게임 스피드 업
         if (Mathf.FloorToInt(curTime) >= 25)
         {
             SpeedUp();
@@ -120,7 +120,12 @@ public class GameManager : MonoBehaviour
     
     private void SpeedUp()
     {
-        mapMoveSpeed += 0.5f;
+        if (mapMoveSpeed >= 15)
+        {
+            return;
+        }
+        
+        mapMoveSpeed += 1f;
 
         speedUpTextRect.anchoredPosition = new Vector2(0, -800);
 
