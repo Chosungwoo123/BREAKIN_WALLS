@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         invincibilityTime = new WaitForSeconds(3f);
+        
+        GameManager.Instance.SetLifeText(health);
     }
 
     private void Update()
@@ -144,6 +146,8 @@ public class Player : MonoBehaviour
         Debug.Log("남은 체력 : " + health);
 
         Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+        
+        GameManager.Instance.SetLifeText(health);
 
         StartCoroutine(InvincibilityRoutine());
     }

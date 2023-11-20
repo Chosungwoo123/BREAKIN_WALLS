@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private RectTransform speedUpTextRect;
     [SerializeField] private RectTransform magnetUpTextRect;
+    [SerializeField] private Text lifeText;
     
     #endregion
 
@@ -141,5 +143,10 @@ public class GameManager : MonoBehaviour
         
         magnetUpTextRect.DOAnchorPosX(0, 0.3f).SetEase(Ease.OutBack);
         magnetUpTextRect.DOAnchorPosX(-1400, 0.2f).SetDelay(0.7f).SetEase(Ease.InBack);
+    }
+
+    public void SetLifeText(int life)
+    {
+        lifeText.text = "X " + life.ToString();
     }
 }
