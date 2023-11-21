@@ -142,12 +142,17 @@ public class Player : MonoBehaviour
         
         //hp 다운
         health--;
-
-        Debug.Log("남은 체력 : " + health);
-
+        
         Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
         
         GameManager.Instance.SetLifeText(health);
+
+        if (health <= 0)
+        {
+            GameManager.Instance.GameOverEvent();
+            Destroy(gameObject);
+            return;
+        }
 
         StartCoroutine(InvincibilityRoutine());
     }

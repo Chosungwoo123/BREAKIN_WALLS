@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RectTransform magnetUpTextRect;
     [SerializeField] private Text lifeText;
     
+    [Space(10)]
+    [Header("게임 오버 화면 UI")]
+    [SerializeField] private Image gameOverWindow;
+    
     #endregion
 
     #region 게임 관련 변수
@@ -49,6 +53,8 @@ public class GameManager : MonoBehaviour
     public GameObject curPlayer;
     
     #endregion
+
+    [HideInInspector] public int breakingWalls = 0;
     
     private float curScore;
     private float curTime = 0f;
@@ -148,5 +154,41 @@ public class GameManager : MonoBehaviour
     public void SetLifeText(int life)
     {
         lifeText.text = "X " + life.ToString();
+    }
+
+    public void GameOverEvent()
+    {
+        StartCoroutine(GameOverRoutine());
+    }
+    
+    private IEnumerator GameOverRoutine()
+    {
+        gameOverWindow.gameObject.SetActive(true);
+        yield return (FadeInImage(gameOverWindow, 1), FadeInImage(gameOverWindow, 1));
+    }
+
+    private IEnumerator FadeInImage(Image _image, float time)
+    {
+        if (time == 0)
+        {
+            yield return null;
+        }
+        
+        float targetAlpha = _image.color.a;
+        float curAlpha = 0;
+        float temp = 0;
+
+        _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, curAlpha);
+        
+        while (temp <= time)
+        {
+            curAlpha += Time.deltaTime * targetAlpha / time;
+            
+            _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, curAlpha);
+            
+            temp += Time.deltaTime;
+            
+            yield return null;
+        }
     }
 }
