@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     private bool isAttacking = false;
     private bool isDashing = false;
     private bool isInvincibility = false;
+    private bool isDie = false;
     
     private Animator anim;
     private WaitForSeconds invincibilityTime;
@@ -133,7 +134,7 @@ public class Player : MonoBehaviour
 
     public void OnDamage()
     {
-        if (isInvincibility)
+        if (isInvincibility || isDie)
         {
             return;
         }
@@ -151,6 +152,7 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.GameOverEvent();
             Destroy(gameObject);
+            isDie = true;
             return;
         }
 
