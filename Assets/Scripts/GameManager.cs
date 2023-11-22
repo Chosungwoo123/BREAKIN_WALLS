@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     [Space(10)]
     [Header("게임 오버 화면 UI")]
     [SerializeField] private Image gameOverWindow;
+    [SerializeField] private Text gameOverText;
     
     #endregion
 
@@ -55,6 +56,8 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [HideInInspector] public int breakingWalls = 0;
+
+    [HideInInspector] public bool isStop;
     
     private float curScore;
     private float curTime = 0f;
@@ -78,6 +81,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (isStop)
+        {
+            return;
+        }
+        
         curTime += Time.deltaTime;
         
         //25초 마다 게임 스피드 업
@@ -164,10 +172,15 @@ public class GameManager : MonoBehaviour
     private IEnumerator GameOverRoutine()
     {
         gameOverWindow.gameObject.SetActive(true);
-        yield return (FadeInImage(gameOverWindow, 1), FadeInImage(gameOverWindow, 1));
+
+        isStop = true;
+        mapMoveSpeed = 0f;
+        
+        StartCoroutine(FadeInObject(gameOverText, 1));
+        yield return FadeInObject(gameOverWindow, 1);
     }
 
-    private IEnumerator FadeInImage(Image _image, float time)
+    private IEnumerator FadeInObject(Image _image, float time)
     {
         if (time == 0)
         {
@@ -185,6 +198,31 @@ public class GameManager : MonoBehaviour
             curAlpha += Time.deltaTime * targetAlpha / time;
             
             _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, curAlpha);
+            
+            temp += Time.deltaTime;
+            
+            yield return null;
+        }
+    }
+    
+    private IEnumerator FadeInObject(Text _text, float time)
+    {
+        if (time == 0)
+        {
+            yield return null;
+        }
+        
+        float targetAlpha = _text.color.a;
+        float curAlpha = 0;
+        float temp = 0;
+
+        _text.color = new Color(_text.color.r, _text.color.g, _text.color.b, curAlpha);
+        
+        while (temp <= time)
+        {
+            curAlpha += Time.deltaTime * targetAlpha / time;
+            
+            _text.color = new Color(_text.color.r, _text.color.g, _text.color.b, curAlpha);
             
             temp += Time.deltaTime;
             
