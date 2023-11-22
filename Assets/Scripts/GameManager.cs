@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     [Header("게임 오버 화면 UI")]
     [SerializeField] private Image gameOverWindow;
     [SerializeField] private TextMeshProUGUI gameOverText;
+    [SerializeField] private TextMeshProUGUI gameOverResultText;
+    [SerializeField] private Image gameOverBoundaryLine;
     
     #endregion
 
@@ -77,8 +79,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        #region 게임오버 화면 관련 변수 비활성화
+
         gameOverWindow.gameObject.SetActive(false);
         gameOverText.gameObject.SetActive(false);
+        gameOverResultText.gameObject.SetActive(false);
+        gameOverBoundaryLine.gameObject.SetActive(false);
+        
+        #endregion
         
         scoreText.text = Mathf.FloorToInt(curScore).ToString();
     }
@@ -173,14 +181,22 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator GameOverRoutine()
     {
-        gameOverWindow.gameObject.SetActive(true);
-        gameOverText.gameObject.SetActive(true);
-
         isStop = true;
         mapMoveSpeed = 0f;
         
+        // 게임 오버 텍스트 띄우기
+        gameOverWindow.gameObject.SetActive(true);
+        gameOverText.gameObject.SetActive(true);
+        
         StartCoroutine(FadeInObject(gameOverText, 1));
         yield return FadeInObject(gameOverWindow, 1);
+
+        // 결과 텍스트 띄우기
+        gameOverResultText.gameObject.SetActive(true);
+        gameOverBoundaryLine.gameObject.SetActive(true);
+        
+        StartCoroutine(FadeInObject(gameOverResultText, 1));
+        yield return FadeInObject(gameOverBoundaryLine, 1);
     }
 
     private IEnumerator FadeInObject(Image _image, float time)
