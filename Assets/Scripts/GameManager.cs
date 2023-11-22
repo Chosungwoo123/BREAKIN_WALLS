@@ -77,6 +77,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        gameOverWindow.gameObject.SetActive(false);
+        gameOverText.gameObject.SetActive(false);
+        
         scoreText.text = Mathf.FloorToInt(curScore).ToString();
     }
 
@@ -148,8 +151,6 @@ public class GameManager : MonoBehaviour
 
         speedUpTextRect.DOAnchorPosY(320, 0.3f).SetEase(Ease.OutBack);
         speedUpTextRect.DOAnchorPosY(800, 0.2f).SetDelay(0.7f).SetEase(Ease.InBack);
-        
-        Debug.Log(mapMoveSpeed);
     }
 
     public void MagnetUpTextAnimation()
@@ -173,6 +174,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator GameOverRoutine()
     {
         gameOverWindow.gameObject.SetActive(true);
+        gameOverText.gameObject.SetActive(true);
 
         isStop = true;
         mapMoveSpeed = 0f;
