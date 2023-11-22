@@ -1151,7 +1151,7 @@ MonoBehaviour:
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
+  m_VolumeTrigger: {fileID: 1457687805}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
   m_Antialiasing: 0
@@ -1612,6 +1612,7 @@ MonoBehaviour:
   scoreMultiply: 10
   curPlayer: {fileID: 1457687801}
   breakingWalls: 0
+  isStop: 0
 --- !u!4 &920262100
 Transform:
   m_ObjectHideFlags: 0
@@ -3100,6 +3101,7 @@ MonoBehaviour:
   - {fileID: 3409636102042587774, guid: 7bc668d756e48e449bb9540a6ed538d3, type: 3}
   - {fileID: 3409636102042587774, guid: b88189db96573dd4fb90efdedfdff192, type: 3}
   - {fileID: 3409636102042587774, guid: 8f48bea87063e7946a21060c59b76d97, type: 3}
+  - {fileID: 3409636102042587774, guid: 8abeb7c5a415771489eacc1d236123b1, type: 3}
 --- !u!1 &1754332168
 GameObject:
   m_ObjectHideFlags: 0
