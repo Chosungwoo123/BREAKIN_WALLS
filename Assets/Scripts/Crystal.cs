@@ -26,6 +26,7 @@ public class Crystal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            GameManager.Instance.crystalCount++;
             GameManager.Instance.GetScore(40);
 
             Instantiate(effect, transform.position, Quaternion.identity);

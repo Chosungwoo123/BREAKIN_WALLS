@@ -36,12 +36,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private RectTransform speedUpTextRect;
     [SerializeField] private RectTransform magnetUpTextRect;
-    [SerializeField] private Text lifeText;
+    [SerializeField] private TextMeshProUGUI lifeText;
     
     [Space(10)]
     [Header("게임 오버 화면 UI")]
     [SerializeField] private Image gameOverWindow;
-    [SerializeField] private Text gameOverText;
+    [SerializeField] private TextMeshProUGUI gameOverText;
     
     #endregion
 
@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [HideInInspector] public int breakingWalls = 0;
+    [HideInInspector] public int crystalCount = 0;
 
     [HideInInspector] public bool isStop;
     
@@ -205,7 +206,7 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    private IEnumerator FadeInObject(Text _text, float time)
+    private IEnumerator FadeInObject(TextMeshProUGUI _text, float time)
     {
         if (time == 0)
         {
