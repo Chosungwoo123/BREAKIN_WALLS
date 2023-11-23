@@ -195,6 +195,8 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator GameOverRoutine()
     {
+        Debug.Log(curScore);
+        
         isStop = true;
         mapMoveSpeed = 0f;
         
@@ -233,7 +235,7 @@ public class GameManager : MonoBehaviour
         yield return FadeInObject(gameOverScoreText, 0.5f);
         
         gameOverScoreCountText.gameObject.SetActive(true);
-        StartCoroutine(TextCountAnimation(gameOverScoreCountText, curScore, 0));
+        StartCoroutine(TextCountAnimation(gameOverScoreCountText, Mathf.FloorToInt(curScore), 0));
     }
 
     private IEnumerator FadeInObject(Image _image, float time)
@@ -298,7 +300,6 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        curScore = target;
-        _text.text = Mathf.FloorToInt(curScore).ToString();
+        _text.text = Mathf.FloorToInt(target).ToString();
     }
 }
