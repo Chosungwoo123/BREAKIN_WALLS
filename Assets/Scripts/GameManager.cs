@@ -44,6 +44,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gameOverText;
     [SerializeField] private TextMeshProUGUI gameOverResultText;
     [SerializeField] private Image gameOverBoundaryLine;
+    [SerializeField] private TextMeshProUGUI gameOverBrokenWallText;
+    [SerializeField] private TextMeshProUGUI gameOverBrokenWallCountText;
+    [SerializeField] private TextMeshProUGUI gameOverCrystalText;
+    [SerializeField] private TextMeshProUGUI gameOverCrystalCountText;
+    [SerializeField] private TextMeshProUGUI gameOverScoreText;
+    [SerializeField] private TextMeshProUGUI gameOverScoreCountText;
+    [SerializeField] private TextMeshProUGUI gameOverRestartText;
     
     #endregion
 
@@ -85,6 +92,13 @@ public class GameManager : MonoBehaviour
         gameOverText.gameObject.SetActive(false);
         gameOverResultText.gameObject.SetActive(false);
         gameOverBoundaryLine.gameObject.SetActive(false);
+        gameOverBrokenWallText.gameObject.SetActive(false);
+        gameOverBrokenWallCountText.gameObject.SetActive(false);
+        gameOverCrystalText.gameObject.SetActive(false);
+        gameOverCrystalCountText.gameObject.SetActive(false);
+        gameOverScoreText.gameObject.SetActive(false);
+        gameOverScoreCountText.gameObject.SetActive(false);
+        gameOverRestartText.gameObject.SetActive(false);
         
         #endregion
         
@@ -187,16 +201,39 @@ public class GameManager : MonoBehaviour
         // 게임 오버 텍스트 띄우기
         gameOverWindow.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(true);
+        gameOverRestartText.gameObject.SetActive(true);
         
         StartCoroutine(FadeInObject(gameOverText, 1));
+        StartCoroutine(FadeInObject(gameOverRestartText, 1));
         yield return FadeInObject(gameOverWindow, 1);
 
         // 결과 텍스트 띄우기
         gameOverResultText.gameObject.SetActive(true);
         gameOverBoundaryLine.gameObject.SetActive(true);
         
-        StartCoroutine(FadeInObject(gameOverResultText, 1));
-        yield return FadeInObject(gameOverBoundaryLine, 1);
+        StartCoroutine(FadeInObject(gameOverResultText, 0.5f));
+        yield return FadeInObject(gameOverBoundaryLine, 0.5f);
+        
+        // 부순 벽 텍스트 띄우기
+        gameOverBrokenWallText.gameObject.SetActive(true);
+        yield return FadeInObject(gameOverBrokenWallText, 0.5f);
+        
+        gameOverBrokenWallCountText.gameObject.SetActive(true);
+        StartCoroutine(TextCountAnimation(gameOverBrokenWallCountText, breakingWalls, 0));
+        
+        // 크리스탈 텍스트 띄우기
+        gameOverCrystalText.gameObject.SetActive(true);
+        yield return FadeInObject(gameOverCrystalText, 0.5f);
+        
+        gameOverCrystalCountText.gameObject.SetActive(true);
+        StartCoroutine(TextCountAnimation(gameOverCrystalCountText, crystalCount, 0));
+        
+        // 스코어 텍그트 띄우기
+        gameOverScoreText.gameObject.SetActive(true);
+        yield return FadeInObject(gameOverScoreText, 0.5f);
+        
+        gameOverScoreCountText.gameObject.SetActive(true);
+        StartCoroutine(TextCountAnimation(gameOverScoreCountText, curScore, 0));
     }
 
     private IEnumerator FadeInObject(Image _image, float time)
@@ -247,5 +284,21 @@ public class GameManager : MonoBehaviour
             
             yield return null;
         }
+    }
+    
+    private IEnumerator TextCountAnimation(TextMeshProUGUI _text, float target, float current)
+    {
+        float duration = 0.5f; // 카운팅에 걸리는 시간 설정. 
+        float offset = (target - current) / duration;
+
+        while (current < target)
+        {
+            current += offset * Time.deltaTime;
+            _text.text = ((int)current).ToString();
+            yield return null;
+        }
+
+        curScore = target;
+        _text.text = Mathf.FloorToInt(curScore).ToString();
     }
 }
