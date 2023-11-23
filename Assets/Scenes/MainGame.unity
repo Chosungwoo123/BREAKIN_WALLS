@@ -3489,7 +3489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ffd2e1fd5e539e45abe74493209262f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 3
   speed: 17
   runningAmount: 1.5
   boundary: {x: 15, y: 9}
