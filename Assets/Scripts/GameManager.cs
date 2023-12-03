@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RectTransform speedUpTextRect;
     [SerializeField] private RectTransform magnetUpTextRect;
     [SerializeField] private TextMeshProUGUI lifeText;
+    [SerializeField] private Image fadeImage;
     
     [Space(10)]
     [Header("게임 오버 화면 UI")]
@@ -103,6 +104,8 @@ public class GameManager : MonoBehaviour
         #endregion
         
         scoreText.text = Mathf.FloorToInt(curScore).ToString();
+
+        StartCoroutine(FadeInObject(fadeImage, 3, 1));
     }
 
     private void Update()
@@ -205,40 +208,40 @@ public class GameManager : MonoBehaviour
         gameOverText.gameObject.SetActive(true);
         gameOverRestartText.gameObject.SetActive(true);
         
-        StartCoroutine(FadeInObject(gameOverText, 1));
-        StartCoroutine(FadeInObject(gameOverRestartText, 1));
-        yield return FadeInObject(gameOverWindow, 1);
+        StartCoroutine(FadeOutObject(gameOverText, 1));
+        StartCoroutine(FadeOutObject(gameOverRestartText, 1));
+        yield return FadeOutObject(gameOverWindow, 1);
 
         // 결과 텍스트 띄우기
         gameOverResultText.gameObject.SetActive(true);
         gameOverBoundaryLine.gameObject.SetActive(true);
         
-        StartCoroutine(FadeInObject(gameOverResultText, 0.5f));
-        yield return FadeInObject(gameOverBoundaryLine, 0.5f);
+        StartCoroutine(FadeOutObject(gameOverResultText, 0.5f));
+        yield return FadeOutObject(gameOverBoundaryLine, 0.5f);
         
         // 부순 벽 텍스트 띄우기
         gameOverBrokenWallText.gameObject.SetActive(true);
-        yield return FadeInObject(gameOverBrokenWallText, 0.5f);
+        yield return FadeOutObject(gameOverBrokenWallText, 0.5f);
         
         gameOverBrokenWallCountText.gameObject.SetActive(true);
         StartCoroutine(TextCountAnimation(gameOverBrokenWallCountText, breakingWalls, 0));
         
         // 크리스탈 텍스트 띄우기
         gameOverCrystalText.gameObject.SetActive(true);
-        yield return FadeInObject(gameOverCrystalText, 0.5f);
+        yield return FadeOutObject(gameOverCrystalText, 0.5f);
         
         gameOverCrystalCountText.gameObject.SetActive(true);
         StartCoroutine(TextCountAnimation(gameOverCrystalCountText, crystalCount, 0));
         
         // 스코어 텍그트 띄우기
         gameOverScoreText.gameObject.SetActive(true);
-        yield return FadeInObject(gameOverScoreText, 0.5f);
+        yield return FadeOutObject(gameOverScoreText, 0.5f);
         
         gameOverScoreCountText.gameObject.SetActive(true);
         StartCoroutine(TextCountAnimation(gameOverScoreCountText, Mathf.FloorToInt(curScore), 0));
     }
 
-    private IEnumerator FadeInObject(Image _image, float time)
+    private IEnumerator FadeOutObject(Image _image, float time)
     {
         if (time == 0)
         {
@@ -262,8 +265,33 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
     }
+
+    private IEnumerator FadeOutObject(Image _image, float time, float fadeAmount)
+    {
+        if (time == 0)
+        {
+            yield return null;
+        }
+        
+        float targetAlpha = fadeAmount;
+        float curAlpha = 0;
+        float temp = 0;
+
+        _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, curAlpha);
+        
+        while (temp <= time)
+        {
+            curAlpha += Time.deltaTime * targetAlpha / time;
+            
+            _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, curAlpha);
+            
+            temp += Time.deltaTime;
+            
+            yield return null;
+        }
+    }
     
-    private IEnumerator FadeInObject(TextMeshProUGUI _text, float time)
+    private IEnumerator FadeOutObject(TextMeshProUGUI _text, float time)
     {
         if (time == 0)
         {
@@ -281,6 +309,30 @@ public class GameManager : MonoBehaviour
             curAlpha += Time.deltaTime * targetAlpha / time;
             
             _text.color = new Color(_text.color.r, _text.color.g, _text.color.b, curAlpha);
+            
+            temp += Time.deltaTime;
+            
+            yield return null;
+        }
+    }
+    
+    private IEnumerator FadeInObject(Image _image, float time, float startAmount)
+    {
+        if (time == 0)
+        {
+            yield return null;
+        }
+        
+        float curAlpha = startAmount;
+        float temp = 0;
+
+        _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, startAmount);
+        
+        while (temp <= time)
+        {
+            curAlpha -= Time.deltaTime / time;
+            
+            _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, curAlpha);
             
             temp += Time.deltaTime;
             
