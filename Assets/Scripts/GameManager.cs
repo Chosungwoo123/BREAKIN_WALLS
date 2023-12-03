@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -105,7 +106,7 @@ public class GameManager : MonoBehaviour
         
         scoreText.text = Mathf.FloorToInt(curScore).ToString();
 
-        StartCoroutine(FadeInObject(fadeImage, 3, 1));
+        StartCoroutine(FadeInObject(fadeImage, 1, 1));
     }
 
     private void Update()
@@ -196,6 +197,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GameOverRoutine());
     }
     
+    public void RestartFunction()
+    {
+        StartCoroutine(RestartRoutine());
+    }
+    
     private IEnumerator GameOverRoutine()
     {
         Debug.Log(curScore);
@@ -239,6 +245,13 @@ public class GameManager : MonoBehaviour
         
         gameOverScoreCountText.gameObject.SetActive(true);
         StartCoroutine(TextCountAnimation(gameOverScoreCountText, Mathf.FloorToInt(curScore), 0));
+    }
+    
+    private IEnumerator RestartRoutine()
+    {
+        yield return StartCoroutine(FadeOutObject(fadeImage, 1, 1));
+
+        SceneManager.LoadScene("MainGame");
     }
 
     private IEnumerator FadeOutObject(Image _image, float time)
