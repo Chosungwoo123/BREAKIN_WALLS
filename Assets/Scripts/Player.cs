@@ -60,8 +60,8 @@ public class Player : MonoBehaviour
             return;
         }
         
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        float h = Input.GetAxisRaw("Horizontal") * GameManager.Instance.controlMultiply;
+        float v = Input.GetAxisRaw("Vertical") * GameManager.Instance.controlMultiply;
         var curPos = transform.position;
 
         curPos += new Vector3(h, v, 0) * speed * Time.deltaTime * runningMultiply;

@@ -6,6 +6,7 @@ using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private RectTransform speedUpTextRect;
     [SerializeField] private RectTransform magnetUpTextRect;
+    [SerializeField] private RectTransform controlReverseRect;
     [SerializeField] private TextMeshProUGUI lifeText;
     [SerializeField] private Image fadeImage;
     
@@ -62,17 +64,24 @@ public class GameManager : MonoBehaviour
     [Header("게임 관련 변수")]
     public float mapMoveSpeed;
     public float scoreMultiply;
+    public float controlReverseMinCoolTime;
+    public float controlReverseMaxCoolTime;
+    public float controlReverseMinTime;
+    public float controlReverseMaxTime;
     public GameObject curPlayer;
     
     #endregion
 
     [HideInInspector] public int breakingWalls = 0;
     [HideInInspector] public int crystalCount = 0;
+    [HideInInspector] public int controlMultiply;
 
     [HideInInspector] public bool isStop;
     
     private float curScore;
-    private float curTime = 0f;
+    private float curSpeedUpTimer = 0f;
+    private float controlReverseTime = 0f;
+    private float curControlReverseTimer = 0f;
 
     private void Awake()
     {
@@ -103,6 +112,9 @@ public class GameManager : MonoBehaviour
         gameOverRestartText.gameObject.SetActive(false);
         
         #endregion
+
+        controlReverseTime = Random.Range(controlReverseMinCoolTime, controlReverseMaxCoolTime);
+        controlMultiply = 1;
         
         scoreText.text = Mathf.FloorToInt(curScore).ToString();
 
@@ -116,14 +128,23 @@ public class GameManager : MonoBehaviour
             return;
         }
         
-        curTime += Time.deltaTime;
+        curSpeedUpTimer += Time.deltaTime;
         
         //25초 마다 게임 스피드 업
-        if (Mathf.FloorToInt(curTime) >= 25)
+        if (Mathf.FloorToInt(curSpeedUpTimer) >= 25)
         {
             SpeedUp();
 
-            curTime = 0f;
+            curSpeedUpTimer = 0f;
+        }
+
+        curControlReverseTimer += Time.deltaTime;
+        
+        // 랜덤으로 정해진 시간마다 움직임 반전
+        if (Mathf.FloorToInt(curControlReverseTimer) >= controlReverseTime && controlMultiply == 1f)
+        {
+            // 움직임 반전
+            StartCoroutine(ControlReverseRoutine());
         }
 
         ScoreUpdate();
@@ -200,6 +221,24 @@ public class GameManager : MonoBehaviour
     public void RestartFunction()
     {
         StartCoroutine(RestartRoutine());
+    }
+    
+    private IEnumerator ControlReverseRoutine()
+    {
+        controlMultiply = -1;
+        
+        controlReverseRect.anchoredPosition = new Vector2(0, -800);
+
+        controlReverseRect.DOAnchorPosY(440, 0.2f).SetEase(Ease.Linear);
+
+        yield return new WaitForSeconds(Random.Range(controlReverseMinTime, controlReverseMaxTime));
+
+        controlReverseTime = Random.Range(controlReverseMinCoolTime, controlReverseMaxCoolTime);
+        curControlReverseTimer = 0;
+        
+        controlMultiply = 1;
+
+        controlReverseRect.DOAnchorPosY(800, 0.2f).SetEase(Ease.Linear);
     }
     
     private IEnumerator GameOverRoutine()
