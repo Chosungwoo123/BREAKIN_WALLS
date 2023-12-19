@@ -66,8 +66,8 @@ public class GameManager : MonoBehaviour
     public float scoreMultiply;
     public float controlReverseMinCoolTime;
     public float controlReverseMaxCoolTime;
-    public float controlReverseMinTime;
-    public float controlReverseMaxTime;
+    public int controlReverseMinTime;
+    public int controlReverseMaxTime;
     public GameObject curPlayer;
     
     #endregion
