@@ -41,7 +41,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RectTransform controlReverseRect;
     [SerializeField] private TextMeshProUGUI lifeText;
     [SerializeField] private Image fadeImage;
-    
+    [SerializeField] private GameObject dangerText;
+
     [Space(10)]
     [Header("게임 오버 화면 UI")]
     [SerializeField] private Image gameOverWindow;
@@ -110,7 +111,8 @@ public class GameManager : MonoBehaviour
         gameOverScoreText.gameObject.SetActive(false);
         gameOverScoreCountText.gameObject.SetActive(false);
         gameOverRestartText.gameObject.SetActive(false);
-        
+        dangerText.SetActive(false);
+
         #endregion
 
         controlReverseTime = Random.Range(controlReverseMinCoolTime, controlReverseMaxCoolTime);
@@ -145,6 +147,16 @@ public class GameManager : MonoBehaviour
         {
             // 움직임 반전
             StartCoroutine(ControlReverseRoutine());
+        }
+
+        // 움직임 반전까지 3초 남았으면 느낌표 활성화
+        if (controlReverseTime - curControlReverseTimer < 3 && controlReverseTime - curControlReverseTimer > 0)
+        {
+            dangerText.SetActive(true);
+        }
+        else
+        {
+            dangerText.SetActive(false);
         }
 
         ScoreUpdate();
