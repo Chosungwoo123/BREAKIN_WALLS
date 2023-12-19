@@ -14,7 +14,16 @@ public class Map : MonoBehaviour
     {
         // 왼쪽으로 이동하는 로직
         
-        Vector3 movePos = Vector2.left * GameManager.Instance.mapMoveSpeed * Time.deltaTime;
+        Vector3 movePos;
+
+        if (GameManager.Instance == null)
+        {
+            movePos = Vector2.left * 5 * Time.deltaTime;
+        }
+        else
+        {
+            movePos = Vector2.left * GameManager.Instance.mapMoveSpeed * Time.deltaTime;
+        }
 
         transform.position += movePos;
     }

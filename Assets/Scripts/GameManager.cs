@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
     {
         #region 게임오버 화면 관련 변수 비활성화
 
-        gameOverWindow.gameObject.SetActive(false);
+        gameOverWindow.gameObject.SetActive(false); 
         gameOverText.gameObject.SetActive(false);
         gameOverResultText.gameObject.SetActive(false);
         gameOverBoundaryLine.gameObject.SetActive(false);
