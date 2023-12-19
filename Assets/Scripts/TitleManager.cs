@@ -16,8 +16,6 @@ public class TitleManager : MonoBehaviour
         {
             isGameStart = true;
 
-            Debug.Log("dd");
-
             StartCoroutine(GameStartRoutine());
         }
     }
