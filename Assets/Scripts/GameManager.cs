@@ -243,8 +243,6 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator GameOverRoutine()
     {
-        Debug.Log(curScore);
-        
         isStop = true;
         mapMoveSpeed = 0f;
         
