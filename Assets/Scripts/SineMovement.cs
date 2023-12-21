@@ -12,11 +12,11 @@ public class SineMovement : MonoBehaviour
 
     private void Start()
     {
-        startPosition = transform.position;
+        startPosition = transform.localPosition;
     }
 
     private void Update()
     {
-        transform.position = startPosition + transform.up * Mathf.Sin(Time.time * frequency + offset) * magnitube;
+        transform.localPosition = startPosition + transform.up * Mathf.Sin(Time.time * frequency + offset) * magnitube;
     }
 }

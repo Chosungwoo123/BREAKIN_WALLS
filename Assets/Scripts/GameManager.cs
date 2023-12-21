@@ -245,12 +245,14 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(Random.Range(controlReverseMinTime, controlReverseMaxTime));
 
+        controlReverseRect.DOAnchorPosY(800, 0.2f).SetEase(Ease.Linear);
+
+        yield return new WaitForSeconds(0.5f);
+
         controlReverseTime = Random.Range(controlReverseMinCoolTime, controlReverseMaxCoolTime);
         curControlReverseTimer = 0;
-        
-        controlMultiply = 1;
 
-        controlReverseRect.DOAnchorPosY(800, 0.2f).SetEase(Ease.Linear);
+        controlMultiply = 1;
     }
     
     private IEnumerator GameOverRoutine()
