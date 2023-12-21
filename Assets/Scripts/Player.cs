@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
 
     private void AttackUpdate()
     {
-        if (Input.GetMouseButtonDown(0) && !isDashing)
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) && !isDashing)
         {
             anim.SetTrigger("Attack");
         }
