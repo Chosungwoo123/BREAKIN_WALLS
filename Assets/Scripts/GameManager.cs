@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gameOverCrystalCountText;
     [SerializeField] private TextMeshProUGUI gameOverScoreText;
     [SerializeField] private TextMeshProUGUI gameOverScoreCountText;
+    [SerializeField] private TextMeshProUGUI bestScoreText;
+    [SerializeField] private TextMeshProUGUI bestScoreCountText;
     [SerializeField] private TextMeshProUGUI gameOverRestartText;
     
     #endregion
@@ -83,6 +85,7 @@ public class GameManager : MonoBehaviour
     private float curSpeedUpTimer = 0f;
     private float controlReverseTime = 0f;
     private float curControlReverseTimer = 0f;
+    private float bestScore = 0;
 
     private void Awake()
     {
@@ -110,6 +113,8 @@ public class GameManager : MonoBehaviour
         gameOverCrystalCountText.gameObject.SetActive(false);
         gameOverScoreText.gameObject.SetActive(false);
         gameOverScoreCountText.gameObject.SetActive(false);
+        bestScoreText.gameObject.SetActive(false);
+        bestScoreCountText.gameObject.SetActive(false);
         gameOverRestartText.gameObject.SetActive(false);
         dangerText.SetActive(false);
 
@@ -121,6 +126,12 @@ public class GameManager : MonoBehaviour
         scoreText.text = Mathf.FloorToInt(curScore).ToString();
 
         StartCoroutine(FadeInObject(fadeImage, 1, 1));
+
+        // 베스트 스코어 불러오기
+        if (PlayerPrefs.HasKey("BestScore"))
+        {
+            bestScore = PlayerPrefs.GetFloat("BestScore");
+        }
     }
 
     private void Update()
@@ -259,6 +270,14 @@ public class GameManager : MonoBehaviour
     {
         isStop = true;
         mapMoveSpeed = 0f;
+
+        // 베스트 스코어 저장
+        if (curScore > bestScore)
+        {
+            bestScore = curScore;
+
+            PlayerPrefs.SetFloat("BestScore", bestScore);
+        }
         
         // 게임 오버 텍스트 띄우기
         gameOverWindow.gameObject.SetActive(true);
@@ -290,12 +309,19 @@ public class GameManager : MonoBehaviour
         gameOverCrystalCountText.gameObject.SetActive(true);
         StartCoroutine(TextCountAnimation(gameOverCrystalCountText, crystalCount, 0));
         
-        // 스코어 텍그트 띄우기
+        // 스코어 텍스트 띄우기
         gameOverScoreText.gameObject.SetActive(true);
         yield return FadeOutObject(gameOverScoreText, 0.5f);
         
         gameOverScoreCountText.gameObject.SetActive(true);
         StartCoroutine(TextCountAnimation(gameOverScoreCountText, Mathf.FloorToInt(curScore), 0));
+
+        // 베스트 텍스트 띄우기
+        bestScoreText.gameObject.SetActive(true);
+        yield return FadeOutObject(bestScoreText, 0.5f);
+
+        bestScoreCountText.gameObject.SetActive(true);
+        StartCoroutine(TextCountAnimation(bestScoreCountText, Mathf.FloorToInt(bestScore), 0));
     }
     
     private IEnumerator RestartRoutine()
