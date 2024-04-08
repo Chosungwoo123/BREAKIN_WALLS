@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakingEffectPrefab: {fileID: 5158443796489938819, guid: ff4cd24957879b64e9516bf3846c6a94, type: 3}
+  breakSound: {fileID: 8300000, guid: e5f93a5297603479283f5159748502b0, type: 3}
 --- !u!114 &5364296418570037102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +154,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.49999997, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -125062
+  m_InstanceId: -51826
   m_LocalBounds:
     m_Center: {x: 0, y: 0.000000029802322, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}

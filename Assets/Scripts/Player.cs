@@ -24,7 +24,15 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject hitEffectPrefab;
     [SerializeField] private ParticleSystem magnetEffect;
     [SerializeField] private Magnet magnet;
-    
+
+    #endregion
+
+    #region 사운드
+
+    [Space(10)]
+    [Header("사운드")]
+    public PlayerSounds sounds;
+
     #endregion
 
     private float runningMultiply = 1f;
@@ -94,6 +102,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) && !isDashing)
         {
+            SoundManager.Instance.PlaySound(sounds.attackSound);
             anim.SetTrigger("Attack");
         }
     }
@@ -192,5 +201,11 @@ public class Player : MonoBehaviour
         yield return invincibilityTime;
 
         isInvincibility = false;
+    }
+
+    [System.Serializable]
+    public class PlayerSounds
+    {
+        public AudioClip attackSound;
     }
 }
