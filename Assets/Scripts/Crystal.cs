@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class Crystal : MonoBehaviour
 {
     [SerializeField] private GameObject effect;
+    [SerializeField] private AudioClip pickUpSound;
 
     public bool isMagnet;
 
@@ -26,8 +24,12 @@ public class Crystal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            // 스코어 업
             GameManager.Instance.crystalCount++;
             GameManager.Instance.GetScore(40);
+
+            // 사운드
+            SoundManager.Instance.PlaySound(pickUpSound);
 
             Instantiate(effect, transform.position, Quaternion.identity);
             

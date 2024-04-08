@@ -147,7 +147,8 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        
+
+        SoundManager.Instance.PlaySound(sounds.hitSound);
         GameManager.Instance.CameraShake(0.2f, 5);
         
         //hp 다운
@@ -191,6 +192,7 @@ public class Player : MonoBehaviour
             magnet.scanRange += 0.25f;
             Destroy(col.gameObject);
             GameManager.Instance.MagnetUpTextAnimation();
+            SoundManager.Instance.PlaySound(sounds.magnetSound);
         }
     }
     
@@ -207,5 +209,7 @@ public class Player : MonoBehaviour
     public class PlayerSounds
     {
         public AudioClip attackSound;
+        public AudioClip hitSound;
+        public AudioClip magnetSound;
     }
 }

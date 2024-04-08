@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 6038177330265968246, guid: f3200bfc08b99be45aa3fb11032eb367, type: 3}
+  pickUpSound: {fileID: 8300000, guid: b040b2d514978084088e6c93a1cae26a, type: 3}
+  isMagnet: 0
 --- !u!114 &1308538806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +179,7 @@ MonoBehaviour:
   - {x: 0.00007081032, y: -0.2500582, z: 0}
   m_ShapePathHash: -216472593
   m_Mesh: {fileID: 0}
-  m_InstanceId: -239374
+  m_InstanceId: -149724
   m_LocalBounds:
     m_Center: {x: -0.000736773, y: 0.00008133054, z: 0}
     m_Extent: {x: 0.5016616, y: 0.25013953, z: 0}

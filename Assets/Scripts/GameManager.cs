@@ -72,7 +72,13 @@ public class GameManager : MonoBehaviour
     public int controlReverseMinTime;
     public int controlReverseMaxTime;
     public GameObject curPlayer;
-    
+
+    #endregion
+
+    #region 사운드 관련
+
+    [SerializeField] private AudioClip uiSound;
+
     #endregion
 
     [HideInInspector] public int breakingWalls = 0;
@@ -219,16 +225,28 @@ public class GameManager : MonoBehaviour
 
         speedUpTextRect.anchoredPosition = new Vector2(0, -800);
 
+        SoundManager.Instance.PlaySound(uiSound);
+
         speedUpTextRect.DOAnchorPosY(320, 0.3f).SetEase(Ease.OutBack);
-        speedUpTextRect.DOAnchorPosY(800, 0.2f).SetDelay(0.7f).SetEase(Ease.InBack);
+        speedUpTextRect.DOAnchorPosY(800, 0.2f).SetDelay(0.7f).SetEase(Ease.InBack).
+            OnStart
+            (
+                () => SoundManager.Instance.PlaySound(uiSound)
+            );
     }
 
     public void MagnetUpTextAnimation()
     {
         magnetUpTextRect.anchoredPosition = new Vector2(1400, 200);
-        
+
+        SoundManager.Instance.PlaySound(uiSound);
+
         magnetUpTextRect.DOAnchorPosX(0, 0.3f).SetEase(Ease.OutBack);
-        magnetUpTextRect.DOAnchorPosX(-1400, 0.2f).SetDelay(0.7f).SetEase(Ease.InBack);
+        magnetUpTextRect.DOAnchorPosX(-1400, 0.2f).SetDelay(0.7f).SetEase(Ease.InBack).
+            OnStart
+            (
+                () => SoundManager.Instance.PlaySound(uiSound)
+            );
     }
 
     public void SetLifeText(int life)
@@ -249,12 +267,16 @@ public class GameManager : MonoBehaviour
     private IEnumerator ControlReverseRoutine()
     {
         controlMultiply = -1;
-        
+
+        SoundManager.Instance.PlaySound(uiSound);
+
         controlReverseRect.anchoredPosition = new Vector2(0, -800);
 
         controlReverseRect.DOAnchorPosY(440, 0.2f).SetEase(Ease.Linear);
 
         yield return new WaitForSeconds(Random.Range(controlReverseMinTime, controlReverseMaxTime));
+
+        SoundManager.Instance.PlaySound(uiSound);
 
         controlReverseRect.DOAnchorPosY(800, 0.2f).SetEase(Ease.Linear);
 
@@ -294,7 +316,7 @@ public class GameManager : MonoBehaviour
         
         StartCoroutine(FadeOutObject(gameOverResultText, 0.5f));
         yield return FadeOutObject(gameOverBoundaryLine, 0.5f);
-        
+
         // 부순 벽 텍스트 띄우기
         gameOverBrokenWallText.gameObject.SetActive(true);
         yield return FadeOutObject(gameOverBrokenWallText, 0.5f);

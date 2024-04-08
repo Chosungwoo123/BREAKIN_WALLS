@@ -2888,6 +2888,7 @@ MonoBehaviour:
   controlReverseMinTime: 4
   controlReverseMaxTime: 8
   curPlayer: {fileID: 1457687801}
+  uiSound: {fileID: 8300000, guid: 303d44c8d6ec943a38df8ec10b19d9c7, type: 3}
   breakingWalls: 0
   crystalCount: 0
   controlMultiply: 0
@@ -4100,6 +4101,8 @@ MonoBehaviour:
   magnet: {fileID: 1754332170}
   sounds:
     attackSound: {fileID: 8300000, guid: 303d44c8d6ec943a38df8ec10b19d9c7, type: 3}
+    hitSound: {fileID: 8300000, guid: e2ef13590109348d19c2566f7381c2f5, type: 3}
+    magnetSound: {fileID: 8300000, guid: 16c25250151e04a37b489a3f056c8314, type: 3}
 --- !u!4 &1457687805
 Transform:
   m_ObjectHideFlags: 0
