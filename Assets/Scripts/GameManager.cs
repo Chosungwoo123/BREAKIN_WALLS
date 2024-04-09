@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
     #region 사운드 관련
 
     [SerializeField] private AudioClip uiSound;
+    [SerializeField] private AudioClip bgm; 
 
     #endregion
 
@@ -125,6 +126,8 @@ public class GameManager : MonoBehaviour
         dangerText.SetActive(false);
 
         #endregion
+
+        SoundManager.Instance.PlayMusic(bgm);
 
         controlReverseTime = Random.Range(controlReverseMinCoolTime, controlReverseMaxCoolTime);
         controlMultiply = 1;
